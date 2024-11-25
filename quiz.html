@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            quiz
+        </title>
+        <link href="styles.css" rel="stylesheet" type="text/css">
+    </head>
+
+    <body>
+        <section class="band" style="--band-color: #ababab; --text-color: #000"></section>
+
+            <div class="content">
+                <h1>Quiz</h1>
+                <img src="309210398217398123AdobeStock.jpg" class="no-style" style="width: 600px; height: 300px;">
+                <h2>Miguel has returned to wish you good luck in the quiz</h2>
+                <a href="index.html" class="button-link">home</a>
+                <br><br><br>
+
+            </div>
+
+        </section>
+        <!-- <section class="imgband" style="--background-image: url('309210398217398123AdobeStock.jpg'); --img-opacity: 0.9; --imgband-height: 600px; --img-text-color: #000000">
+            <div class="content">
+                <h3>miguel jordans returns to wish you good luck for the quiz</h3>
+            </div>
+        </section> -->
+        <section class="band" style="--band-color: #323441; --text-color: #fff">
+            <h1>Quick Quiz (yes/no)</h1>
+            
+        </section>
+        <div class="quiz" style="display: flex; align-items: center; background-color: #afafaf;">
+            <p style="color: #afafaf;">
+                __________________________________<br>
+            </p>
+
+            <form id="quiz-form">
+                <div class="question">
+                    <label>1. Is teamwork beneficial?</label><br>
+                    <input type="text" name="q1" required>
+                </div>
+
+                <div class="question">
+                    <label>2. State, hence or otherwise, is teamwork more successful with a leader?</label><br>
+                    <input type="text" name="q2" required>
+                </div>
+
+                <div class="question">
+                    <label>3. Is teamwork important in a group project?</label><br>
+                    <input type="text" name="q3" required>
+                </div>
+
+                <div class="question">
+                    <label>4. is kuronami overrated?</label><br>
+                    <input type="text" name="q4" required>
+                </div>
+                <br> <br>
+                <img src="speech.png" height="27">
+                <div class="question">
+                    <label>5. Do it grip?</label><br>
+                    <input type="text" name="q5" required>
+                </div>
+
+                <img src="dog.png">
+                <button type="button" onclick="submit_quiz()">submit</button>
+                <br>
+                <br>
+            </form>
+
+            <section class="band" style="background-color: #afafaf;">
+                <div class="content">
+                    <h2 style="color: black; text-align: left;">Test Result:</h2>
+                    <p id="result" class="result" style="color: black; text-align: left;"></p>
+                    <h2 id="gr" style="color: black; text-align: left;"></h2>
+                    
+                </div>
+            </section>
+        </div>
+
+        <script>
+            function submit_quiz() {
+                // alert("submitted");
+                document.getElementById("gr").innerText = "";
+                const the_answer = "yes";
+                const form = document.getElementById("quiz-form");
+                var score = 0;
+
+                const form_data = new FormData(form);
+                var n = 0;
+                form_data.forEach((answer, i) => {
+                    if (n < 4) {
+                        if (answer.trim().toLowerCase() === the_answer) {
+                            score++;
+                        }
+                        n++;
+                    }
+                });
+
+                var msg = "";
+                if (score === 4) {
+                    msg = "good score";
+                } else if (score >= 1) {
+                    msg = "decent score";
+                } else {
+                    msg = "0 correct?\ni guess every team has a bottomfrag";
+                }
+
+                if (form_data.get("q4").toLowerCase() === "yes") {
+                    msg += "\nyeah it is overrated"
+
+                } else if (form_data.get("q4").toLowerCase() === "no"){
+                    msg += "\nmid take"
+                }
+                if (form_data.get("q5").toLowerCase() === "yes") {
+                    document.getElementById("gr").innerText = "oh LORDY LORD IT GRIPS";
+                } else if (form_data.get("q5").toLowerCase() === "no"){
+                    msg += "\nno grip?"
+                }
+                document.getElementById("result").innerText = msg;
+                
+            }
+        </script>
+    </body>
+</html>
